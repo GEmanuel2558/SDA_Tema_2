@@ -26,7 +26,7 @@ public class HibernateHelper {
         return instance;
     }
 
-    public void beginTransactionIfAllowed() {
+    public Session beginTransactionIfAllowed() {
         Session theSession = factory.openSession();
         if (!theSession.getTransaction().isActive()) {
             theSession.beginTransaction();
@@ -34,6 +34,7 @@ public class HibernateHelper {
             theSession.getTransaction().rollback();
             theSession.beginTransaction();
         }
+        return theSession;
     }
 
 }

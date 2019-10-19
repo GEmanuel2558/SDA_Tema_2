@@ -1,17 +1,19 @@
 package modules;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.QueryHints;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users", schema = "sda_proiect_comun1")
+@NamedQuery(name = "UserEntity.findUserByName",
+        query = "SELECT u FROM UserEntity u where u.userName = :userName and u.password = :password",
+        hints = { @QueryHint(name = QueryHints.READ_ONLY, value = "true") })
 public class UserEntity {
 
     @Id
-    @Column(name = "id", insertable = false, updatable = false,unique = true, nullable = false)
+    @Column(name = "id", insertable = false, updatable = false, unique = true, nullable = false)
     private Integer id;
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
