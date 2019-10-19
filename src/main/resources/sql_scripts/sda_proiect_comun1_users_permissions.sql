@@ -1,15 +1,13 @@
-CREATE DATABASE  IF NOT EXISTS `sda_proiect_comun1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sda_proiect_comun1`;
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: localhost    Database: sda_proiect_comun1
+-- Host: 127.0.0.1    Database: sda_proiect_comun1
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -18,29 +16,32 @@ USE `sda_proiect_comun1`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `users_permissions`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `users_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `permissions_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_name_UNIQUE` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_permission_bind_idx` (`permissions_id`),
+  KEY `fk_user_bind_idx` (`user_id`),
+  CONSTRAINT `fk_permission_bind` FOREIGN KEY (`permissions_id`) REFERENCES `permissions` (`id`),
+  CONSTRAINT `fk_user_bind` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users_permissions`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'andrei','adaac1651bfabc58835700b1bb805b8d3deb94de9a0197f9575332da6b8e08c1'),(2,'emanuel','2853f3552bfaf5896c2a5fe11314c919fa26ea4376f4cb1d0d7a5380097f61d1');
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `users_permissions` WRITE;
+/*!40000 ALTER TABLE `users_permissions` DISABLE KEYS */;
+INSERT INTO `users_permissions` VALUES (4,1,1),(5,1,2),(6,1,3),(7,1,4),(8,2,1),(9,2,2);
+/*!40000 ALTER TABLE `users_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-19 12:05:33
+-- Dump completed on 2019-10-19 13:31:21
