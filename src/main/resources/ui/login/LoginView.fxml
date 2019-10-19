@@ -32,7 +32,7 @@
                   <HBox prefHeight="27.0" prefWidth="200.0" spacing="15.0">
                      <children>
                         <Label style="-fx-text-fill: white;" text="Enter password:" />
-                        <TextField>
+                        <TextField fx:id="textFieldPassword">
                            <HBox.margin>
                               <Insets left="2.0" />
                            </HBox.margin>
@@ -40,14 +40,15 @@
                      </children></HBox>
                   <HBox prefHeight="27.0" prefWidth="200.0" spacing="15.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-alignment: center; -fx-background-color: white; -fx-text-fill: #1d3356;" text="Login" />
-                        <Button mnemonicParsing="false" prefWidth="100.0" style="-fx-alignment: center; -fx-background-color: white; -fx-text-fill: #1d3356;" text="Reset" />
+                        <Button fx:id="buttonLogin" mnemonicParsing="false" onAction="#loginFunction" prefWidth="100.0" style="-fx-alignment: center; -fx-background-color: white; -fx-text-fill: #1d3356;" text="Login" />
+                        <Button fx:id="buttonReset" mnemonicParsing="false" prefWidth="100.0" style="-fx-alignment: center; -fx-background-color: white; -fx-text-fill: #1d3356;" text="Reset" />
                      </children></HBox>
                </children>
                <padding>
                   <Insets left="180.0" />
                </padding>
             </VBox>
+            <Label fx:id="labelCredentialsStatus" text="Credentials are" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="180.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
