@@ -1,4 +1,4 @@
-package ui;
+package ui.login;
 
 public class LoginView {
 }
