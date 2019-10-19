@@ -16,28 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `permissions`
+-- Table structure for table `users_permissions`
 --
 
-DROP TABLE IF EXISTS `permissions`;
+DROP TABLE IF EXISTS `users_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `permissions` (
+CREATE TABLE `users_permissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `permissions_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `fk_permission_bind_idx` (`permissions_id`),
+  KEY `fk_user_bind_idx` (`user_id`),
+  CONSTRAINT `fk_permission_bind` FOREIGN KEY (`permissions_id`) REFERENCES `permissions` (`id`),
+  CONSTRAINT `fk_user_bind` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `permissions`
+-- Dumping data for table `users_permissions`
 --
 
-LOCK TABLES `permissions` WRITE;
-/*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (1,'CREATE'),(4,'DELETE'),(2,'READ'),(3,'UPDATE');
-/*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
+LOCK TABLES `users_permissions` WRITE;
+/*!40000 ALTER TABLE `users_permissions` DISABLE KEYS */;
+INSERT INTO `users_permissions` VALUES (4,1,1),(5,1,2),(6,1,3),(7,1,4),(8,2,1),(9,2,2);
+/*!40000 ALTER TABLE `users_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-19 13:31:22
+-- Dump completed on 2019-10-19 13:31:21
